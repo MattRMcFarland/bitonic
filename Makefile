@@ -6,21 +6,25 @@ CC = gcc
 CFLAGS = -Wall -pedantic -std=c11 -g
 
 # Source directory files
+SRC_DIR = src
 
 # Source .c files
-SRC_FILES = bitonic.c bitonic.h
+SRC_FILES = $(SRC_DIR)/bitonic.c $(SRC_DIR)/bitonic.h
 
 # Should be SRC_FILES with .o
-SRC_OBJS = bitonic.o
+SRC_OBJS = $(SRC_DIR)/bitonic.o
+
+# Test Directory
+TEST_DIR = test
 
 # Test files
-TEST_FILES = bitonic_test.c
+TEST_FILES = $(TEST_DIR)/bitonic_test.c
 
 # Test object files
-TEST_OBJS = bitonic_test.o
+TEST_OBJS = $(TEST_DIR)/bitonic_test.o
 
 # Test executable
-TEST_EXEC = bitonic_test
+TEST_EXEC = $(TEST_DIR)/bitonic_test
 
 test: $(TEST_EXEC) 
 	./$(TEST_EXEC)
@@ -32,10 +36,10 @@ $(TEST_EXEC): $(SRC_OBJS) $(TEST_OBJS)
 	$(CC) $(CFLAGS) $(SRC_OBJS) $(TEST_OBJS) -o $(TEST_EXEC) 
 
 $(SRC_OBJS): $(SRC_FILES)
-	$(CC) $(CFLAGS) -c $(SRC_FILES)
+	$(CC) $(CFLAGS) -c $< -o $(SRC_OBJS)
 
 clean:
 	rm -f $(SRC_OBJS)
 	rm -f $(TEST_OBJS)
 	rm -f $(TEST_EXEC)
-	rm -f *.gch
+	rm -f $(SRC_DIR)/*.gch

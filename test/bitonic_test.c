@@ -7,7 +7,7 @@
  */
 
 #include <stdio.h> 		// for printing
-#include "bitonic.h"	// for bitonic_search()
+#include "../src/bitonic.h"	// for bitonic_search()
 
 /*
  * Runs several tests on the bitonic_search function
